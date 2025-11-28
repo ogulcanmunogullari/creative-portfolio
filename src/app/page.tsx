@@ -1,5 +1,31 @@
+"use client";
+import { motion, Variants, MotionConfig } from "framer-motion";
+import Hero from "@/components/sections/Hero";
 import GlassCard from "@/components/ui/GlassCard";
 import { Rocket, Code2, Palette, BrainCircuit } from "lucide-react";
+import Preloader from "@/components/ui/Preloader";
+import { useState } from "react";
+
+// Kart Animasyon Ayarları
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+  },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2, // Sırayla gelme büyüsü
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  }),
+  hover: {
+    y: -10,
+    transition: { duration: 0.2 },
+  },
+};
 
 const features = [
   {
@@ -33,31 +59,43 @@ const features = [
 ];
 
 export default function Home() {
+  const [isLoaded, setIsLoaded] = useState(false);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-zinc-950 px-4 py-20 text-white selection:bg-purple-500/30">
-      {/* Başlık Alanı */}
-      <div className="mb-16 text-center">
-        <h1 className="mb-4 text-5xl font-bold tracking-tighter md:text-7xl">
-          Next Level{" "}
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-pink-600">
-            Frontend
-          </span>
-        </h1>
-        <p className="text-xl text-zinc-400">
-          1.5 Yıllık Tecrübe, Modern Teknolojilerle Yeniden Doğuyor.
-        </p>
-      </div>
+    <MotionConfig reducedMotion="never">
+      <main className="bg-zinc-950 text-white selection:bg-purple-500/30">
+        <Preloader onFinish={() => setIsLoaded(true)} />
 
-      <div className="grid w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {features.map((feature) => (
-          <GlassCard
-            key={feature.id}
-            title={feature.title}
-            description={feature.description}
-            icon={feature.icon}
-          />
-        ))}
-      </div>
-    </main>
+        {/* 1. Bölüm: Hero (Tam Ekran) */}
+        <Hero startAnimation={isLoaded} />
+
+        {/* 2. Bölüm: Kartlar */}
+        {/* EKSİK OLAN KISIM BUYDU: Container ve Padding Wrapper */}
+        <section
+          id="work"
+          className="container mx-auto px-4 py-24 relative z-10"
+        >
+          <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.id}
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                whileHover="hover"
+                className="h-full"
+              >
+                <GlassCard
+                  title={feature.title}
+                  description={feature.description}
+                  icon={feature.icon}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      </main>
+    </MotionConfig>
   );
 }
