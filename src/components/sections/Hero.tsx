@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Mouse } from "lucide-react";
 import { motion, Variants } from "framer-motion"; // <--- 2. Framer Motion kütüphanesini çağır
-import Scene from "@/components/3D/Scene";
+import Scene from "@/components/3d/Scene";
 import { AnimationProps } from "@/types";
 
 // 3. Animasyon Ayarları (Variants)

@@ -2,9 +2,11 @@
 import { motion, Variants, MotionConfig } from "framer-motion";
 import Hero from "@/components/sections/Hero";
 import GlassCard from "@/components/ui/GlassCard";
-import { Rocket, Code2, Palette, BrainCircuit } from "lucide-react";
 import Preloader from "@/components/ui/Preloader";
 import { useState } from "react";
+import Link from "next/link";
+import { projects } from "@/data/projects";
+import { PROJECT_COLORS, ProjectColor } from "@/lib/constants";
 
 // Kart Animasyon Ayarları
 const cardVariants: Variants = {
@@ -27,37 +29,6 @@ const cardVariants: Variants = {
   },
 };
 
-const features = [
-  {
-    id: 1,
-    title: "Modern Stack",
-    description:
-      "Next.js 16, React Server Components ve TypeScript ile kurşun geçirmez mimari.",
-    icon: Rocket,
-  },
-  {
-    id: 2,
-    title: "Creative UI",
-    description:
-      "Tailwind v4 ile sınırları zorlayan, animasyonlu ve etkileşimli arayüzler.",
-    icon: Palette,
-  },
-  {
-    id: 3,
-    title: "Clean Code",
-    description:
-      "ESLint ve Prettier standartlarında, okunabilir ve sürdürülebilir kod yapısı.",
-    icon: Code2,
-  },
-  {
-    id: 4,
-    title: "3D & Motion",
-    description:
-      "Three.js ve Framer Motion ile web deneyimini bir üst boyuta taşıma hedefi.",
-    icon: BrainCircuit,
-  },
-];
-
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   return (
@@ -75,24 +46,49 @@ export default function Home() {
           className="container mx-auto px-4 py-24 relative z-10"
         >
           <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.id}
-                custom={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                whileHover="hover"
-                className="h-full"
-              >
-                <GlassCard
-                  title={feature.title}
-                  description={feature.description}
-                  icon={feature.icon}
-                />
-              </motion.div>
-            ))}
+            {projects.map((project, index) => {
+              // Rengi güvenli şekilde alalım
+              const colorKey = project.color as ProjectColor;
+              const styles = PROJECT_COLORS[colorKey] || PROJECT_COLORS.blue;
+
+              return (
+                <motion.div
+                  key={project.id}
+                  custom={index}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="h-full"
+                >
+                  <Link
+                    href={`/work/${project.id}`}
+                    className="block h-full group relative"
+                  >
+                    {/* 1. RENKLİ GLOW (ARKADA) */}
+                    {/* Kartın arkasında, hover olunca beliren bulanık ışık */}
+                    <motion.div
+                      layoutId={`shadow-${project.id}`}
+                      className={`absolute -inset-1 rounded-3xl bg-linear-to-r ${styles.glow} opacity-0 group-hover:opacity-100 blur-xs group-hover:blur-lg transition-opacity duration-500 -z-10`}
+                    />
+
+                    {/* 2. KARTIN KENDİSİ (ÖNDE) */}
+                    {/* Arka planı HEP SİYAH (zinc-900). Asla renkli olmamalı. */}
+                    <motion.div
+                      layoutId={`card-${project.id}`}
+                      className={`h-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/90 p-6 backdrop-blur-xl transition-colors duration-300 ${styles.border}`}
+                    >
+                      <GlassCard
+                        title={project.title}
+                        category={project.category}
+                        description={project.description}
+                        color={colorKey}
+                      />
+                    </motion.div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </section>
       </main>

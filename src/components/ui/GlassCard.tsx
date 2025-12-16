@@ -1,26 +1,37 @@
-import { LucideIcon } from "lucide-react";
+import { PROJECT_COLORS } from "@/lib/constants";
+import { GlassCardProps } from "@/types";
 
-interface GlassCardProps {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}
+const GlassCard = ({ title, category, description, color }: GlassCardProps) => {
+  // Renge göre stilleri çekiyoruz
+  const styles = PROJECT_COLORS[color] || PROJECT_COLORS.blue;
 
-const GlassCard = ({ title, description, icon: Icon }: GlassCardProps) => {
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-lg transition-all duration-300 hover:translate-y-2 hover:border-white/20 hover:bg-white/10 hover:shadow-2xl hover:shadow-purple-500/20">
-      <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-purple-500/20 blur-3xl transition-all group-hover:bg-purple-500/40"></div>
-      <div className="relative z-10 flex flex-col gap-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-purple-400 ring-1 ring-white/20 transition-colors group-hover:bg-purple-500 group-hover:text-white">
-          <Icon size={24} />
-        </div>
-        <div>
-          <h3 className="text-xl font-bold text-white">{title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-            {description}
-          </p>
-        </div>
+    <div className="flex h-full flex-col justify-between relative z-10 ">
+      <div>
+        {/* Kategori Badge */}
+        <span
+          className={`mb-3 inline-block rounded-full px-3 py-1 text-xs font-medium backdrop-blur-md transition-colors ${styles.badge}`}
+        >
+          {category}
+        </span>
+
+        {/* Başlık */}
+        <h3
+          className={`mb-2 text-xl font-bold text-white transition-colors duration-300 ${styles.text}`}
+        >
+          {title}
+        </h3>
+
+        {/* Açıklama */}
+        <p className="text-sm leading-relaxed text-zinc-400 line-clamp-3">
+          {description}
+        </p>
       </div>
+
+      {/* Alt Çizgi (Opsiyonel süs) */}
+      <div
+        className={`mt-6 h-0.5 w-8 rounded-full bg-white/20 transition-all duration-500 group-hover:w-full group-hover:bg-white/50`}
+      />
     </div>
   );
 };
