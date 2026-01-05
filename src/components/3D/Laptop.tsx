@@ -36,6 +36,9 @@ export default function Laptop({ imageUrl }: LaptopProps) {
   );
   texture.flipY = false;
   texture.colorSpace = THREE.SRGBColorSpace;
+  texture.wrapS = THREE.ClampToEdgeWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+  texture.repeat.set(1, 1);
 
   useEffect(() => {
     const screen = nodes.mesh256948792_2;
