@@ -24,7 +24,12 @@ const Navbar = () => {
         {["Work", "About", "Contact"].map((item) => (
           <li key={item}>
             <Link
-              href={`#${item.toLowerCase()}`}
+              target={item === "Contact" ? "_blank" : "_self"}
+              href={
+                item === "Contact"
+                  ? "https://www.linkedin.com/in/ogulcanmunogullari/"
+                  : "#" + item.toLowerCase()
+              }
               className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
             >
               {item}

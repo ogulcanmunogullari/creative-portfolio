@@ -1,7 +1,12 @@
 import { PROJECT_COLORS } from "@/lib/constants";
 import { GlassCardProps } from "@/types";
 
-const GlassCard = ({ title, category, description, color }: GlassCardProps) => {
+const GlassCard = ({
+  title,
+  category,
+  shortDescription,
+  color,
+}: GlassCardProps) => {
   // Renge göre stilleri çekiyoruz
   const styles = PROJECT_COLORS[color] || PROJECT_COLORS.blue;
 
@@ -24,7 +29,7 @@ const GlassCard = ({ title, category, description, color }: GlassCardProps) => {
 
         {/* Açıklama */}
         <p className="text-sm leading-relaxed text-zinc-400 line-clamp-3">
-          {description}
+          {shortDescription}
         </p>
       </div>
 

@@ -82,6 +82,7 @@ export default function Home() {
                         title={project.title}
                         category={project.category}
                         description={project.description}
+                        shortDescription={project.shortDescription}
                         color={colorKey}
                       />
                     </motion.div>
