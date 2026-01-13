@@ -10,14 +10,15 @@ import Link from "next/link";
 // 3D Importlar
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
-import ImageGallery from "@/components/3d/ImageGallery";
-
+import ImageGallery from "@/components/3d/ImageGallery_TEMP";
 
 export default function ProjectDetail() {
   const { id } = useParams();
   const project = projects.find((p) => p.id === id);
-  
-  const [focusedImageIndex, setFocusedImageIndex] = useState<number | null>(null);
+
+  const [focusedImageIndex, setFocusedImageIndex] = useState<number | null>(
+    null
+  );
 
   if (!project)
     return <div className="p-20 text-white text-center">Project not found</div>;
@@ -27,7 +28,6 @@ export default function ProjectDetail() {
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white selection:bg-purple-500/30 pb-20 overflow-x-hidden">
-      
       {/* Yüksekliği artırdık (80vh) ki laptop rahat görünsün */}
       <div className="relative h-full w-full flex flex-col items-center justify-start pt-24 overflow-hidden">
         {/* ARKA PLAN GLOW */}
@@ -61,25 +61,28 @@ export default function ProjectDetail() {
             <ambientLight intensity={1.5} />
             <Suspense fallback={null}>
               {/* Laptop'a projeye özel görseli gönderiyoruz */}
-              <ImageGallery images={project.images || []} focusedImageIndex={focusedImageIndex} // Odaklanan görselin index'ini prop olarak gönderiyoruz
-              setFocusedImageIndex={setFocusedImageIndex} />
+              <ImageGallery
+                images={project.images || []}
+                focusedImageIndex={focusedImageIndex} // Odaklanan görselin index'ini prop olarak gönderiyoruz
+                setFocusedImageIndex={setFocusedImageIndex}
+              />
               <Environment preset="city" />
               {focusedImageIndex !== null && (
-              <OrbitControls
-                makeDefault
-                enableZoom={true}
-                enableRotate={false} // Dönmeyi engelle
-                enablePan={true}    // Kaydırmayı engelle
-                minDistance={3}      // Çok fazla yaklaşmayı engelle
-                maxDistance={5}      // Çok uzaklaşmayı engelle
-              />
-            )}
+                <OrbitControls
+                  makeDefault
+                  enableZoom={true}
+                  enableRotate={false} // Dönmeyi engelle
+                  enablePan={true} // Kaydırmayı engelle
+                  minDistance={3} // Çok fazla yaklaşmayı engelle
+                  maxDistance={5} // Çok uzaklaşmayı engelle
+                />
+              )}
             </Suspense>
           </Canvas>
 
-<AnimatePresence>
+          <AnimatePresence>
             {focusedImageIndex === null && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -105,7 +108,7 @@ export default function ProjectDetail() {
             )}
           </AnimatePresence>
           <AnimatePresence>
-          {focusedImageIndex !== null && (
+            {focusedImageIndex !== null && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -113,7 +116,9 @@ export default function ProjectDetail() {
                 // Arka plana koyuluk ve bulanıklık ekledik:
                 className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 px-6 py-3 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 text-white/80 z-20 shadow-2xl"
               >
-                <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Scroll to Zoom</span>
+                <span className="text-[10px] uppercase tracking-[0.3em] font-bold">
+                  Scroll to Zoom
+                </span>
                 <div className="animate-bounce mt-1">
                   <Mouse size={18} className="text-white" />
                 </div>
@@ -138,10 +143,10 @@ export default function ProjectDetail() {
               <h3 className="text-2xl font-bold text-white mb-4">
                 Project Overview
               </h3>
-              <div 
-      className="prose prose-invert max-w-none" // Opsiyonel: Tailwind Typography plugin varsa güzel durur, yoksa silinebilir.
-      dangerouslySetInnerHTML={{ __html: project.description }} 
-    />
+              <div
+                className="prose prose-invert max-w-none" // Opsiyonel: Tailwind Typography plugin varsa güzel durur, yoksa silinebilir.
+                dangerouslySetInnerHTML={{ __html: project.description }}
+              />
               {/* Burası ileride daha detaylı doldurulabilir */}
             </div>
           </div>
