@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Environment, Float } from "@react-three/drei";
 import BlackOrb from "./BlackOrb";
 import { Suspense } from "react";
-import { AnimationProps } from "@/types";
+import { AnimationProps } from "../../types";
 
 const Scene = ({ startAnimation }: AnimationProps) => {
   return (

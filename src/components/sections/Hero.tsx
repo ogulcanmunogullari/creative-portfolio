@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { Mouse } from "lucide-react";
 import { motion, Variants } from "framer-motion"; // <--- 2. Framer Motion kütüphanesini çağır
-import Scene from "@/components/3d/Scene_TEMP";
-import { AnimationProps } from "@/types";
+import Scene from "../../components/3d/Scene_TEMP";
+import { AnimationProps } from "../../types";
+
 
 // 3. Animasyon Ayarları (Variants)
 // Karmaşık ayarları JSX'in içine gömmemek için burada tanımlıyoruz.

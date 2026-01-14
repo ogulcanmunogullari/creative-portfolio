@@ -1,8 +1,8 @@
 "use client";
 import React, { Suspense, useState } from "react";
 import { useParams } from "next/navigation";
-import { projects } from "@/data/projects";
-import { PROJECT_COLORS, ProjectColor } from "@/lib/constants";
+import { projects } from "../../../data/projects";
+import { PROJECT_COLORS, ProjectColor } from "../../../lib/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Mouse } from "lucide-react";
 import Link from "next/link";
@@ -10,7 +10,8 @@ import Link from "next/link";
 // 3D Importlar
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
-import ImageGallery from "@/components/3d/ImageGallery_TEMP";
+import ImageGallery from "../../../components/3d/ImageGallery_TEMP";
+
 
 export default function ProjectDetail() {
   const { id } = useParams();

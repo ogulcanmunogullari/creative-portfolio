@@ -1,4 +1,4 @@
-import { ProjectColor } from "@/lib/constants";
+import { ProjectColor } from "../lib/constants";
 
 export interface Project {
   id: string;
