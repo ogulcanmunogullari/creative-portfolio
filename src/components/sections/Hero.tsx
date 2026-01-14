@@ -5,7 +5,7 @@ import { Mouse } from "lucide-react";
 import { motion, Variants } from "framer-motion"; // <--- 2. Framer Motion kütüphanesini çağır
 
 import { AnimationProps } from "../../types";
-import NewScene from "@/components/3d/NewScene";
+import NewScene from "@/components/threeD/NewScene";
 
 
 
