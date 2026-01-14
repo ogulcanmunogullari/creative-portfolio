@@ -6,17 +6,17 @@ import { useTexture, Plane } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-interface ImageGallery3DProps {
+interface IGallery {
   images: string[];
   focusedImageIndex: number | null; // Yeni prop
   setFocusedImageIndex: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-export default function ImageGallery({
+export default function Gallery({
   images,
   focusedImageIndex,
   setFocusedImageIndex,
-}: ImageGallery3DProps) {
+}: IGallery) {
   const groupRef = useRef<THREE.Group>(null); // Tüm görselleri içeren grup için ref
 
   // Birden fazla görseli yüklüyoruz

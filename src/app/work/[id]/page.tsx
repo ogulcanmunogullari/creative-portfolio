@@ -9,7 +9,7 @@ import Link from "next/link";
 // 3D Importlar
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
-import ImageGallery from "@/components/3d/ImageGallery_TEMP";
+import Gallery from "@/components/3d/Gallery";
 import { projects } from "../../../data/projects";
 import { ProjectColor, PROJECT_COLORS } from "../../../lib/constants";
 
@@ -63,7 +63,7 @@ export default function ProjectDetail() {
             <ambientLight intensity={1.5} />
             <Suspense fallback={null}>
               {/* Laptop'a projeye özel görseli gönderiyoruz */}
-              <ImageGallery
+              <Gallery
                 images={project.images || []}
                 focusedImageIndex={focusedImageIndex} // Odaklanan görselin index'ini prop olarak gönderiyoruz
                 setFocusedImageIndex={setFocusedImageIndex}

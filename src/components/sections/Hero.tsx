@@ -5,7 +5,7 @@ import { Mouse } from "lucide-react";
 import { motion, Variants } from "framer-motion"; // <--- 2. Framer Motion kütüphanesini çağır
 
 import { AnimationProps } from "../../types";
-import Scene from "@/components/3d/Scene_TEMP";
+import NewScene from "@/components/3d/NewScene";
 
 
 
@@ -74,7 +74,7 @@ const Hero = ({ startAnimation }: AnimationProps) => {
       {/* 2. 3D SAHNE (SCENE) */}
       {/* Bunu da tam ekran yapıyoruz */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <Scene startAnimation={startAnimation} />
+        <NewScene startAnimation={startAnimation} />
       </div>
 
       {/* --- ARKA PLAN KATMANI BİTİŞİ --- */}

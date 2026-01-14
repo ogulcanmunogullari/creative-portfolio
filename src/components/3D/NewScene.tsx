@@ -7,7 +7,7 @@ import { AnimationProps } from "../../types";
 import BlackOrb from "./BlackOrb";
 
 
-const Scene = ({ startAnimation }: AnimationProps) => {
+export default function NewScene ({ startAnimation }: AnimationProps){
   return (
     <div className="w-full h-full absolute inset-0 -z-10">
       {/* Canvas: 3D Dünyasının Penceresi */}
@@ -36,4 +36,3 @@ const Scene = ({ startAnimation }: AnimationProps) => {
   );
 };
 
-export default Scene;
