@@ -1,5 +1,6 @@
 import { ProjectColor } from "../lib/constants";
 
+
 export interface Project {
   id: string;
   title: string;

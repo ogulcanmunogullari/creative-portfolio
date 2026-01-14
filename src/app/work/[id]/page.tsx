@@ -1,8 +1,7 @@
 "use client";
 import React, { Suspense, useState } from "react";
 import { useParams } from "next/navigation";
-import { projects } from "../../../data/projects";
-import { PROJECT_COLORS, ProjectColor } from "../../../lib/constants";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Mouse } from "lucide-react";
 import Link from "next/link";
@@ -11,6 +10,8 @@ import Link from "next/link";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 import ImageGallery from "../../../components/3d/ImageGallery_TEMP";
+import { projects } from "../../../data/projects";
+import { ProjectColor, PROJECT_COLORS } from "../../../lib/constants";
 
 
 export default function ProjectDetail() {

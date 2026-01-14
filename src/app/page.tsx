@@ -1,12 +1,13 @@
 "use client";
 import { motion, Variants, MotionConfig } from "framer-motion";
+import { useState } from "react";
+
+import Link from "next/link";
 import Hero from "../components/sections/Hero";
 import GlassCard from "../components/ui/GlassCard";
 import Preloader from "../components/ui/Preloader";
-import { useState } from "react";
-import Link from "next/link";
 import { projects } from "../data/projects";
-import { PROJECT_COLORS, ProjectColor } from "../lib/constants";
+import { ProjectColor, PROJECT_COLORS } from "../lib/constants";
 
 
 // Kart Animasyon Ayarları

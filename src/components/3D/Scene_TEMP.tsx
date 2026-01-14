@@ -1,9 +1,11 @@
 "use client";
 import { Canvas } from "@react-three/fiber";
 import { Environment, Float } from "@react-three/drei";
-import BlackOrb from "./BlackOrb";
+
 import { Suspense } from "react";
 import { AnimationProps } from "../../types";
+import BlackOrb from "./BlackOrb";
+
 
 const Scene = ({ startAnimation }: AnimationProps) => {
   return (

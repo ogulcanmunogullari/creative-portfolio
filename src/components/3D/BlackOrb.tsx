@@ -3,7 +3,8 @@ import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { MeshDistortMaterial, Sphere } from "@react-three/drei";
 import * as THREE from "three";
-import { AnimationProps } from "@/types";
+import { AnimationProps } from "../../types";
+
 
 const BlackOrb = ({ startAnimation }: AnimationProps) => {
   // 1. Referans alıyoruz ki her karede (frame) döndürebilelim
