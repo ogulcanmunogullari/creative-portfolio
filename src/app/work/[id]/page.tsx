@@ -9,7 +9,7 @@ import Link from "next/link";
 // 3D Importlar
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
-import ImageGallery from "../../../components/3d/ImageGallery_TEMP";
+import ImageGallery from "@/components/3d/ImageGallery_TEMP";
 import { projects } from "../../../data/projects";
 import { ProjectColor, PROJECT_COLORS } from "../../../lib/constants";
 
